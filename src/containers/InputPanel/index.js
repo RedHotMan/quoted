@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { isTweetUrl } from '../../utils/utils';
+import { isTweetUrl, getUserIdAndTweetIdFromUrl } from '../../utils/utils';
 import { FormWrapper, InputText, SubmitButton } from './style';
 
 const InputPanel = () =>  {
@@ -23,6 +23,7 @@ const InputPanel = () =>  {
     if (isUrlValid === null) {
       if (isTweetUrl(url)) {
         setUrlValid(true)
+        const tweetInfo = getUserIdAndTweetIdFromUrl(url);
       } else {
         setUrlValid(false)
       }
