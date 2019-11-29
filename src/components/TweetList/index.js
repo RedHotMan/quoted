@@ -1,7 +1,8 @@
 import React from 'react';
-import { AiFillHeart, AiOutlineRetweet } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineRetweet, AiOutlineClose } from 'react-icons/ai';
 import moment from 'moment';
 import {
+  CardList,
   Card,
   CardHeader,
   CardBody,
@@ -11,6 +12,7 @@ import {
   CardTitle,
   CardMeta,
   FooterIcon,
+  ResetButton,
 } from './style';
 
 const TweetList = props => {
@@ -51,10 +53,13 @@ const TweetList = props => {
   });
 
   return (
-    <ul>
-      {cards}
-    </ul>
-  )
+    <>
+      <ResetButton onClick={props.clear}>
+        <AiOutlineClose />
+      </ResetButton>
+      <CardList>{cards}</CardList>
+    </>
+  );
 }
 
 export default TweetList;

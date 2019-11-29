@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const CardList = styled.ul`
+  padding: 0;
+  margin: 5rem 0;
+`;
+
 export const Card = styled.a`
   color: #333
   text-align: left;
@@ -68,4 +73,22 @@ export const FooterIcon = styled.span`
   display: inline-flex;
   align-items: center;
   margin-right: 1rem;
+`;
+
+export const ResetButton = styled.button`
+  display: flex;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  color: #255fff;
+  background-color: #255fff;
+  position: fixed;
+  color: #fff;
+  border: 0;
+  top: 3rem;
+  right: 3rem;
+  box-shadow: 0 0.25rem 1rem rgba(37, 95, 255, 0.4);
+  cursor: pointer;
+  outline: none 0;
 `;
