@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { isTweetUrl, getUserIdAndTweetIdFromUrl } from '../../utils/utils';
 import { FormWrapper, InputText, SubmitButton } from './style';
 
@@ -7,6 +7,9 @@ const InputPanel = props =>  {
   const urlInputRef = useRef(null);
   const [url, setUrl] = useState('');
   const [isUrlValid, setUrlValid] = useState(null);
+
+  const dispatch = useDispatch();
+  const { getTweetQuotes } = dispatch.app;
 
   useEffect(() => {
     urlInputRef.current.focus();
@@ -25,7 +28,7 @@ const InputPanel = props =>  {
       if (isTweetUrl(url)) {
         setUrlValid(true)
         const tweetInfo = getUserIdAndTweetIdFromUrl(url);
-        props.getTweetQuotes(tweetInfo);
+        getTweetQuotes(tweetInfo);
       } else {
         setUrlValid(false)
       }
@@ -53,12 +56,4 @@ const InputPanel = props =>  {
   );
 }
 
-const mapStateToProps = state => ({
-  tweets: state.app.tweets,
-});
-
-const mapDispatchToProps = dispatch => ({
-  getTweetQuotes: (tweetInfo) => dispatch.app.getTweetQuotes(tweetInfo),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputPanel);
+export default InputPanel;

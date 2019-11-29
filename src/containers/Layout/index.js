@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import TweetList from '../../components/TweetList';
@@ -7,11 +7,16 @@ import InputPanel from '../InputPanel';
 import { Container } from './style';
 
 const Layout = props => {
-  console.log(props);
+  const tweets = useSelector(state => state.app.tweets);
+  const displayList = useSelector(state => state.app.displayList);
+
+  const dispatch = useDispatch();
+  const { clear } = dispatch.app;
+
   return (
     <Container>
-      {props.tweets.length > 0 ? (
-        <TweetList tweets={props.tweets} />
+      {displayList ? (
+        <TweetList tweets={tweets} clear={clear} />
       ) : (
         <>
           <Header />
@@ -20,11 +25,7 @@ const Layout = props => {
       )}
       <Footer />
     </Container>
-  )
+  );
 }
 
-const mapStateToProps = state => ({
-  tweets: state.app.tweets,
-});
-
-export default connect(mapStateToProps, null)(Layout);
+export default Layout;
