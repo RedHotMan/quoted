@@ -1,5 +1,6 @@
 import React from 'react';
 import { AiFillHeart, AiOutlineRetweet } from 'react-icons/ai';
+import moment from 'moment';
 import {
   Card,
   CardHeader,
@@ -17,14 +18,21 @@ const TweetList = props => {
 
   props.tweets.forEach((tweet, index) => {
     cards.push(
-      <Card key={index} href={`https://twitter.com/${tweet.user.id_str}/statuses/${tweet.id_str}`} target='_blank' rel='noopener norefer'>
+      <Card
+        key={index}
+        href={`https://twitter.com/${tweet.user.id_str}/statuses/${tweet.id_str}`}
+        target="_blank"
+        rel="noopener norefer"
+      >
         <CardHeader>
           <Avatar>
             <AvatarImage src={tweet.user.profile_image_url_https} />
           </Avatar>
           <div>
             <CardTitle>{tweet.user.name}</CardTitle>
-            <CardMeta>@{tweet.user.screen_name}</CardMeta>
+            <CardMeta>
+              @{tweet.user.screen_name} - {moment(new Date(tweet.created_at)).fromNow()}
+            </CardMeta>
           </div>
         </CardHeader>
 
@@ -38,14 +46,14 @@ const TweetList = props => {
             <AiOutlineRetweet style={{ marginRight: '5px' }} /> {tweet.retweet_count}
           </FooterIcon>
         </CardFooter>
-      </Card>
-    )
+      </Card>,
+    );
   });
 
   return (
-    <>
+    <ul>
       {cards}
-    </>
+    </ul>
   )
 }
 
