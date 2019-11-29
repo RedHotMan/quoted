@@ -1,13 +1,20 @@
+const INITIAL_STATE = {
+  tweets: [],
+  displayList: false
+}
+
 const app = {
-  state: {
-    tweets: []
-  },
+  state: INITIAL_STATE,
   reducers: {
     getTweets(state, tweets) {
       return {
         ...state,
-        tweets: tweets
+        tweets: tweets,
+        displayList: true,
       }
+    },
+    clear(state) {
+      return { INITIAL_STATE }
     }
   },
   effects: dispatch => ({
@@ -15,7 +22,7 @@ const app = {
       await fetch(`/api/getQuotesFromTweet/${tweetInfo.userId}/${tweetInfo.tweetId}`)
         .then(response => response.json())
         .then(data => dispatch.app.getTweets(data.statuses));
-    }
+    },
   })
 }
 
