@@ -1,4 +1,6 @@
+require('dotenv').config({ path: '.env' });
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const Twitter = require('./twitter').Twitter;
@@ -6,6 +8,14 @@ const Twitter = require('./twitter').Twitter;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(pino);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.resolve('build')));
+
+  app.get('/', function(req, res) {
+    res.sendFile(path.resolve('build', 'index.html'));
+  });
+}
 
 app.get('/api/greeting', (req, res) => {
   const name = req.query.name || 'World';
@@ -25,4 +35,4 @@ app.get('/api/getQuotesFromTweet/:userId/:tweetId', (req, res) => {
   );
 });
 
-app.listen(3001, () => console.log('Express server is running on localhost:3001'));
+app.listen(3003, () => console.log('Express server is running on localhost:3003'));
