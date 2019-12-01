@@ -1,4 +1,5 @@
 require('dotenv').config({ path: '.env' });
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -35,4 +36,4 @@ app.get('/api/getQuotesFromTweet/:userId/:tweetId', (req, res) => {
   );
 });
 
-app.listen(3003, () => console.log('Express server is running on localhost:3003'));
+app.listen(process.env.PORT || 3003, () => console.log('Express server is running on localhost:3003'));

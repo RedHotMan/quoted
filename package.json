@@ -26,7 +26,7 @@
     "client": "react-scripts start",
     "server": "node-env-run server --exec nodemon | pino-colada",
     "dev": "run-p server client",
-    "heroku-postbuild": "yarn && yarn run build"
+    "heroku-postbuild": "yarn run build"
   },
   "eslintConfig": {
     "extends": "react-app"
