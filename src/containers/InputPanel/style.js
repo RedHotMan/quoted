@@ -21,6 +21,13 @@ export const InputText = styled.input.attrs(props => ({}))`
   ::placeholder {
     color: #255FFF
   }
+  @media screen and (max-width: 530px) {
+    width: 200px;
+  }
+
+  @media screen and (max-width: 330px) {
+    width: auto;
+  }
 `;
 
 export const SubmitButton = styled.input.attrs(({ btnLabel }) => ({

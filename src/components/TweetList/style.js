@@ -21,6 +21,12 @@ export const Card = styled.a`
     background-color: #3d5466;
     color: #fff;
   }
+
+  @media screen and (max-width: 40rem) {
+    width: auto;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
 }
 `;
 
