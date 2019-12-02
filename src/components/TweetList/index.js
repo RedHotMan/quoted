@@ -16,15 +16,18 @@ import {
 } from './style';
 
 const TweetList = props => {
+
+  const openTweet = (tweetUserId, tweetId) => {
+    window.open(`https://twitter.com/${tweetUserId}/statuses/${tweetId}`, '_blank');
+  }
+
   const cards = [];
 
   props.tweets.forEach((tweet, index) => {
     cards.push(
       <Card
         key={index}
-        href={`https://twitter.com/${tweet.user.id_str}/statuses/${tweet.id_str}`}
-        target="_blank"
-        rel="noopener norefer"
+        onClick={() => openTweet(tweet.user.id_str, tweet.id_str)}
       >
         <CardHeader>
           <Avatar>

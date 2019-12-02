@@ -5,7 +5,7 @@ export const CardList = styled.ul`
   margin: 5rem 0;
 `;
 
-export const Card = styled.a`
+export const Card = styled.li`
   color: #333
   text-align: left;
   border: 1px solid #dadee4;
@@ -14,8 +14,8 @@ export const Card = styled.a`
   flex-direction: column;
   box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
   margin-bottom: 0.7rem;
-  text-decoration: none;
   transition: ease 0.5s;
+  cursor: pointer;
 
   &:hover {
     background-color: #3d5466;
