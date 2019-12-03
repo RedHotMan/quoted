@@ -1,6 +1,8 @@
+import axios from 'axios';
+
 const INITIAL_STATE = {
   tweets: [],
-  displayList: false
+  displayList: false,
 }
 
 const app = {
@@ -19,9 +21,10 @@ const app = {
   },
   effects: dispatch => ({
     async getTweetQuotes(tweetInfo) {
-      await fetch(`/api/getQuotesFromTweet/${tweetInfo.userId}/${tweetInfo.tweetId}`)
-        .then(response => response.json())
-        .then(data => dispatch.app.getTweets(data.statuses));
+      await axios.get(`/api/getQuotesFromTweet/${tweetInfo.userId}/${tweetInfo.tweetId}`)
+        .then(({data}) => {
+          dispatch.app.getTweets(data.statuses);
+        });
     },
   })
 }
