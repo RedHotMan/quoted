@@ -5,7 +5,9 @@ export const FormWrapper = styled.div`
   justify-content: center;
 `;
 
-export const InputText = styled.input.attrs(props => ({}))`
+export const InputText = styled.input`
+  border-radius: 0 !important;
+  margin: 0 !important; 
   font-size: 1em;
   border-left: 2px solid #255FFF;
   border-bottom: 2px solid #255FFF;
@@ -30,10 +32,8 @@ export const InputText = styled.input.attrs(props => ({}))`
   }
 `;
 
-export const SubmitButton = styled.input.attrs(({ btnLabel }) => ({
-  type: 'submit',
-  value: btnLabel || 'Submit button',
-}))`
+export const SubmitButton = styled.button`
+  margin: 0 !important;
   font-size: 1em;
   font-weight: 900;
   border-left: 1px solid #255fff;

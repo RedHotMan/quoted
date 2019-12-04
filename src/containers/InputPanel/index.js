@@ -50,7 +50,9 @@ const InputPanel = props =>  {
             }
           }}
         />
-        <SubmitButton disabled={isUrlValid} btnLabel="Search" onClick={onSubmitClick} />
+        <SubmitButton disabled={isUrlValid} onClick={onSubmitClick}>
+          Search
+        </SubmitButton>
       </form>
     </FormWrapper>
   );
