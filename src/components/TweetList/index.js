@@ -12,6 +12,7 @@ import {
   CardTitle,
   CardMeta,
   FooterIcon,
+  ResetFloatingButton,
   ResetButton,
 } from './style';
 
@@ -56,12 +57,19 @@ const TweetList = props => {
   });
 
   return (
-    <>
-      <ResetButton onClick={props.clear}>
-        <AiOutlineClose />
-      </ResetButton>
-      <CardList>{cards}</CardList>
-    </>
+    cards.length > 0 ? (
+      <>
+        <ResetFloatingButton onClick={props.clear}>
+          <AiOutlineClose />
+        </ResetFloatingButton>
+        <CardList>{cards}</CardList>
+      </>
+    ) : (
+      <>
+        <h2>The specified tweet was not quoted…</h2>
+        <ResetButton onClick={props.clear}>Retry with another tweet</ResetButton>
+      </>
+    )
   );
 }
 

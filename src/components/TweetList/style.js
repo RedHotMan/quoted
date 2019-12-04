@@ -81,7 +81,7 @@ export const FooterIcon = styled.span`
   margin-right: 1rem;
 `;
 
-export const ResetButton = styled.button`
+export const ResetFloatingButton = styled.button`
   display: flex;
   justify-content: center;
   width: 2.5rem;
@@ -97,4 +97,16 @@ export const ResetButton = styled.button`
   box-shadow: 0 0.25rem 1rem rgba(37, 95, 255, 0.4);
   cursor: pointer;
   outline: none 0;
+`;
+
+export const ResetButton = styled.button`
+  font-size: 0.7em;
+  font-weight: 900;
+  border-radius: 3px;
+  border: 0;
+  padding: 1em;
+  color: #fff;
+  background-color: #255FFF;
+  outline: none 0;
+  cursor: 'pointer';
 `;
