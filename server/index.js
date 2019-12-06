@@ -29,7 +29,7 @@ app.get('/api/getQuotesFromTweet/:userId/:tweetId', (req, res) => {
 
   Twitter.get(
     'search/tweets',
-    { q: `-from:${params.userId} url:${params.tweetId} -filter:retweets`, count: 100 },
+    { q: ` url:${params.tweetId} -filter:retweets`, count: 1000 },
     function(err, data, response) {
       res.send(JSON.stringify(data));
     },
