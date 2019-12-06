@@ -108,5 +108,5 @@ export const ResetButton = styled.button`
   color: #fff;
   background-color: #255FFF;
   outline: none 0;
-  cursor: 'pointer';
+  cursor: pointer;
 `;
