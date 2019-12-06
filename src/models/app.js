@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { store } from 'react-notifications-component';
 
 const INITIAL_STATE = {
   tweets: [],
@@ -22,8 +23,45 @@ const app = {
   effects: dispatch => ({
     async getTweetQuotes(tweetInfo) {
       await axios.get(`/api/getQuotesFromTweet/${tweetInfo.userId}/${tweetInfo.tweetId}`)
-        .then(({data}) => {
-          dispatch.app.getTweets(data.statuses);
+        .then(({data}) => {          
+          console.log(data.statuses)
+          if (data.errors) {
+            store.addNotification({
+              title: 'Oops ! ⚠️',
+              message: data.errors[0].message,
+              type: 'danger',
+              insert: 'top',
+              container: 'top-right',
+              animationIn: ["animated", "fadeIn"],
+              animationOut: ["animated", "fadeOut"],
+              width: 350,
+              dismiss: {
+                duration: 3000,
+                onScreen: true,
+                pauseOnHover: true,
+              },
+            });
+            dispatch.app.clear();
+          } else if (data.statuses.length === 0) {
+            store.addNotification({
+              title: 'Oh ! 🤷‍♂️',
+              message: 'The specified tweet has not been quoted yet…',
+              type: 'warning',
+              insert: 'top',
+              container: 'top-right',
+              animationIn: ['animated', 'fadeIn'],
+              animationOut: ['animated', 'fadeOut'],
+              width: 350,
+              dismiss: {
+                duration: 3000,
+                onScreen: true,
+                pauseOnHover: true,
+              },
+            });
+          }
+          else {
+            dispatch.app.getTweets(data.statuses);
+          }
         });
     },
   })

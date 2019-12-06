@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
+import { store } from 'react-notifications-component';
 import { isTweetUrl, getUserIdAndTweetIdFromUrl } from '../../utils/utils';
 import { FormWrapper, InputText, SubmitButton } from './style';
 
 const InputPanel = props =>  {
-  const urlInputRef = useRef(null);
+  let urlInputRef = useRef();
   const [url, setUrl] = useState('');
   const [isUrlValid, setUrlValid] = useState(null);
 
@@ -12,8 +13,10 @@ const InputPanel = props =>  {
   const { getTweetQuotes } = dispatch.app;
 
   useEffect(() => {
-    urlInputRef.current.focus();
-  })
+    if (urlInputRef.current) {
+      urlInputRef.current.focus();
+    }
+  }, [urlInputRef])
 
   const onUrlChange = e => {
     setUrl(e.target.value);
@@ -31,6 +34,23 @@ const InputPanel = props =>  {
         getTweetQuotes(tweetInfo);
       } else {
         setUrlValid(false)
+
+        store.addNotification({
+          title: 'Nope.',
+          message: '🤔 This is not a tweet url…',
+          type: 'danger',
+          insert: 'top',
+          container: 'top-right',
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          width: 350,
+          dismiss: {
+            duration: 3000,
+            onScreen: true,
+            pauseOnHover: true,
+          },
+        });
+
       }
     }
   }
