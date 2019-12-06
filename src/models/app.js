@@ -23,7 +23,7 @@ const app = {
   effects: dispatch => ({
     async getTweetQuotes(tweetInfo) {
       await axios.get(`/api/getQuotesFromTweet/${tweetInfo.userId}/${tweetInfo.tweetId}`)
-        .then(({data}) => {          
+        .then(({data}) => {
           console.log(data.statuses)
           if (data.errors) {
             store.addNotification({
@@ -44,7 +44,7 @@ const app = {
             dispatch.app.clear();
           } else if (data.statuses.length === 0) {
             store.addNotification({
-              title: 'Oh ! 🤷‍♂️',
+              title: 'Oh! 🤷‍♂️',
               message: 'The specified tweet has not been quoted yet…',
               type: 'warning',
               insert: 'top',
