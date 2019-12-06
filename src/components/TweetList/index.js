@@ -14,6 +14,7 @@ import {
   FooterIcon,
   ResetFloatingButton,
   ResetButton,
+  TweetMedia,
 } from './style';
 
 const TweetList = props => {
@@ -25,11 +26,22 @@ const TweetList = props => {
   const cards = [];
 
   props.tweets.forEach((tweet, index) => {
+    let tweetText = tweet.text;
+
+    if (tweet.entities.urls) {
+      tweet.entities.urls.forEach(url => {
+        tweetText = tweetText.includes(url.url) ? tweetText.replace(url.url, '') : tweetText;
+      });
+    }
+
+    if (tweet.entities.media) {
+      tweet.entities.media.forEach(media => {
+        tweetText = tweetText.includes(media.url) ? tweetText.replace(media.url, '') : tweetText;
+      })
+    }
+
     cards.push(
-      <Card
-        key={index}
-        onClick={() => openTweet(tweet.user.id_str, tweet.id_str)}
-      >
+      <Card key={index} onClick={() => openTweet(tweet.user.id_str, tweet.id_str)}>
         <CardHeader>
           <Avatar>
             <AvatarImage src={tweet.user.profile_image_url_https} />
@@ -42,7 +54,14 @@ const TweetList = props => {
           </div>
         </CardHeader>
 
-        <CardBody>{tweet.text}</CardBody>
+        <CardBody>
+          {tweet.entities.media
+            ? tweet.entities.media.map((media, index) => {
+                return <TweetMedia key={index} mediaSrc={media.media_url} />;
+              })
+            : null}
+          {tweetText}
+        </CardBody>
 
         <CardFooter>
           <FooterIcon>

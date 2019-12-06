@@ -36,7 +36,12 @@ export const CardHeader = styled.div`
   align-items: center;
 `;
 
-export const CardBody = CardHeader;
+export const CardBody = styled.div`
+  padding: 1.5rem 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
 
 export const CardFooter = styled.div`
   padding: 1.5rem 1.5rem;
@@ -109,4 +114,14 @@ export const ResetButton = styled.button`
   background-color: #255FFF;
   outline: none 0;
   cursor: pointer;
+`;
+
+export const TweetMedia = styled.div`
+  background-image: url(${props => props.mediaSrc || ''});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 10rem;
+  margin-bottom: 1rem;
 `;
