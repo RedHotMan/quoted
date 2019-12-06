@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { isTweetUrl, getUserIdAndTweetIdFromUrl } from '../../utils/utils';
 import { FormWrapper, InputText, SubmitButton } from './style';
 
@@ -50,7 +50,7 @@ const InputPanel = props =>  {
             }
           }}
         />
-        <SubmitButton disabled={isUrlValid} onClick={onSubmitClick}>
+        <SubmitButton disabled={props.isLoading || isUrlValid === false} onClick={onSubmitClick}>
           Search
         </SubmitButton>
       </form>
@@ -58,4 +58,8 @@ const InputPanel = props =>  {
   );
 }
 
-export default InputPanel;
+const mapStateToProps = state => ({
+  isLoading: state.loading.effects.app.getTweetQuotes,
+});
+
+export default connect(mapStateToProps, null)(InputPanel);
