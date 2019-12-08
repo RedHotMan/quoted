@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import TweetList from '../../components/TweetList';
 import InputPanel from '../InputPanel';
+import Loader from '../../components/Loader';
 import { Container } from './style';
+const TweetList = lazy(() => import('../../components/TweetList'));
 
 const Layout = props => {
   const tweets = useSelector(state => state.app.tweets);
@@ -14,17 +15,19 @@ const Layout = props => {
   const { clear } = dispatch.app;
 
   return (
-    <Container>
-      {displayList ? (
-        <TweetList tweets={tweets} clear={clear} />
-      ) : (
-        <>
-          <Header />
-          <InputPanel />
-        </>
-      )}
-      <Footer />
-    </Container>
+    <Suspense fallback={<Loader/>}>
+      <Container>
+        {displayList ? (
+          <TweetList tweets={tweets} clear={clear} />
+        ) : (
+          <>
+            <Header />
+            <InputPanel />
+          </>
+        )}
+        <Footer />
+      </Container>
+    </Suspense>
   );
 }
 
