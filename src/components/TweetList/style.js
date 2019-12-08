@@ -92,7 +92,6 @@ export const ResetFloatingButton = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 100%;
-  color: #255fff;
   background-color: #255fff;
   position: fixed;
   color: #fff;

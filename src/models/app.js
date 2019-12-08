@@ -24,7 +24,6 @@ const app = {
     async getTweetQuotes(tweetInfo) {
       await axios.get(`/api/getQuotesFromTweet/${tweetInfo.userId}/${tweetInfo.tweetId}`)
         .then(({data}) => {          
-          console.log(data.statuses)
           if (data.errors) {
             store.addNotification({
               title: 'Oops ! ⚠️',
