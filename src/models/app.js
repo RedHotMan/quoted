@@ -43,7 +43,7 @@ const app = {
             dispatch.app.clear();
           } else if (data.statuses.length === 0) {
             store.addNotification({
-              title: 'Oh ! 🤷‍♂️',
+              title: 'Oh! 🤷‍♂️',
               message: 'The specified tweet has not been quoted yet…',
               type: 'warning',
               insert: 'top',
