@@ -23,8 +23,7 @@ const app = {
   effects: dispatch => ({
     async getTweetQuotes(tweetInfo) {
       await axios.get(`/api/getQuotesFromTweet/${tweetInfo.userId}/${tweetInfo.tweetId}`)
-        .then(({data}) => {
-          console.log(data.statuses)
+        .then(({data}) => {          
           if (data.errors) {
             store.addNotification({
               title: 'Oops ! ⚠️',

@@ -41,7 +41,7 @@ const TweetList = props => {
     }
 
     cards.push(
-      <Card key={index} onClick={() => openTweet(tweet.user.id_str, tweet.id_str)}>
+      <Card key={tweet.id_str} onClick={() => {openTweet(tweet.user.id_str, tweet.id_str); return false;}}>
         <CardHeader>
           <Avatar>
             <AvatarImage src={tweet.user.profile_image_url_https} />
