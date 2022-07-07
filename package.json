@@ -11,7 +11,7 @@
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
     "http-proxy-middleware": "^0.20.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-github-corners": "^0.2.1",
